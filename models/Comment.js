@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
-const bcrypt = require('bcrypt');
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require("sequelize");
+const bcrypt = require("bcrypt");
+const sequelize = require("../config/connection");
 
 class Comments extends Model {
   checkPassword(loginPw) {
@@ -10,46 +10,45 @@ class Comments extends Model {
 
 Comments.init(
   {
-    id:{
-      type:DataTypes.STRING,
-      allowNull:false,
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
     body: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
-    date_created:{
-      type:DataTypes.DATE,
-      allowNull:false,
-      defaultValue:DataTypes.NOW,
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       unique: false,
       references: {
-        model: 'user',
-        key: 'id',
+        model: "user",
+        key: "id",
       },
     },
     post_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'Posts',
-        key: 'id',
+        model: "Posts",
+        key: "id",
       },
     },
-
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'Comments',
+    modelName: "Comments",
   }
 );
 
