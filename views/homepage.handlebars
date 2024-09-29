@@ -1,2 +1,18 @@
-
-<p>HOMEPAGE</p>
+ <main>
+    <section>
+      <h2>All Posts</h2>
+      
+      {{#if posts.length}}
+        {{#each posts}}
+          <article>
+            <h3>{{this.title}}</h3>
+            <p>By {{this.user.username}} on {{format_date this.date_created}}</p>
+            <p>{{this.content}}</p>
+            <a href="/post/{{this.id}}">Read More</a>
+          </article>
+        {{/each}}
+      {{else}}
+        <p>No posts available. Be the first to create a post!</p>
+      {{/if}}
+    </section>
+  </main>

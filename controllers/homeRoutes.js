@@ -38,10 +38,16 @@ router.get("/signup", (req, res) => {
 
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    const postData = await Post.findAll({
+    const postData = await Posts.findAll({
       where: {
         user_id: req.session.user_id,
       },
+      include: [
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));

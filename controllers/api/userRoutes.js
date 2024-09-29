@@ -26,18 +26,12 @@ router.post("/login", async (req, res) => {
     });
 
     if (!userData) {
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password, please try again" });
-      return;
+      return res.redirect('/login?error=invalid');
     }
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "Incorrect email or password, please try again" });
-      return;
+      return res.redirect('/login?error=invalid');
     }
 
     req.session.save(() => {

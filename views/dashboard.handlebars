@@ -1,1 +1,13 @@
-<p>DASHBOARD</p>
+ <h1>Dashboard</h1>
+
+  {{#if posts.length}}
+    {{#each posts}}
+      <article>
+        <h2>{{this.title}}</h2>
+        <p>Created on {{format_date this.date_created}}</p>
+        <p>{{this.body}}</p>
+      </article>
+    {{/each}}
+  {{else}}
+    <p>No posts yet. <a href="/post/create">Create one!</a></p>
+  {{/if}}
