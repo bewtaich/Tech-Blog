@@ -1,34 +1,43 @@
- <main>
-    <section>
-      <article>
-        <p>{{post.content}}</p>
-      </article>
-
-      {{!-- Comments Section --}}
-      <section id="comments">
-        <h3>Comments</h3>
-        
-        {{#if post.comments.length}}
-          {{#each post.comments}}
-            <div class="comment">
-              <p><strong>{{this.user.username}}:</strong> {{this.content}} ({{format_date this.date_created}})</p>
-            </div>
-          {{/each}}
-        {{else}}
-          <p>No comments yet. Be the first to comment!</p>
-        {{/if}}
-      </section>
-
-      {{!-- Comment Form --}}
-      {{#if logged_in}}
-        <section id="comment-form">
-          <h3>Leave a Comment</h3>
-          <form action="/post/{{post.id}}/comment" method="POST">
-            <textarea name="content" placeholder="Enter your comment here..." required></textarea>
-            <button type="submit">Submit Comment</button>
-          </form>
-        </section>
-      {{/if}}
-
+<main>
+  <section>
+    <article>
+      <h3>{{post.title}}</h3>
+      <p>By {{post.user.username}} on {{format_date post.date_created}}</p>
+      <p>{{post.body}}</p>
+    </article>
     </section>
-  </main>
+
+    {{! Comments Section }}
+    <section id="comments">
+      <h3>Comments</h3>
+
+      {{#if post.comments.length}}
+        {{#each post.comments}}
+          <div class="comment">
+            <p><strong>{{this.user.username}}:</strong>
+              {{this.body}}
+              ({{format_date this.date_created}})</p>
+          </div>
+        {{/each}}
+      {{else}}
+        <p>No comments yet. Be the first to comment!</p>
+      {{/if}}
+    </section>
+
+    {{! Comment Form }}
+    {{#if logged_in}}
+      <section id="comment-form">
+        <h3>Leave a Comment</h3>
+        <form action="/post/{{post.id}}/comment" method="POST">
+          <textarea
+            name="content"
+            placeholder="Enter your comment here..."
+            required
+          ></textarea>
+          <button type="submit">Submit Comment</button>
+        </form>
+      </section>
+    {{/if}}
+
+  </section>
+</main>
