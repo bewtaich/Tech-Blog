@@ -10,9 +10,20 @@ class Comments extends Model {
 
 Comments.init(
   {
+    id:{
+      type:DataTypes.STRING,
+      allowNull:false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     body: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    date_created:{
+      type:DataTypes.DATE,
+      allowNull:false,
+      defaultValue:DataTypes.NOW,
     },
     user_id: {
       type: DataTypes.INTEGER,
