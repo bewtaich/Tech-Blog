@@ -1,13 +1,18 @@
- <h1>Dashboard</h1>
-
+<main>
+  <h2>Your Dashboard</h2>
   {{#if posts.length}}
-    {{#each posts}}
-      <article>
-        <h2>{{this.title}}</h2>
-        <p>Created on {{format_date this.date_created}}</p>
-        <p>{{this.body}}</p>
-      </article>
-    {{/each}}
+    <section>
+      {{#each posts}}
+        <article>
+          <h3>{{this.title}}</h3>
+          <p>{{this.body}}</p>
+          <a href="/post/{{this.id}}">View Post</a>
+        </article>
+      {{/each}}
+    </section>
   {{else}}
-    <p>No posts yet. <a href="/post/create">Create one!</a></p>
+    <p>No posts yet. <a href="/api/dashboard/create-post">Create your first post</a></p>
   {{/if}}
+
+  <a href="/api/dashboard/create-post" class="btn">Create New Post</a>
+</main>

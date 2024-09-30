@@ -28,7 +28,7 @@
   {{#if logged_in}}
     <section id="comment-form">
       <h3>Leave a Comment</h3>
-      <form action="/post/{{post.id}}/comment" method="POST">
+      <form action="/api/posts/{{post.id}}/comments" method="POST">
         <textarea
           name="body"
           placeholder="Enter your comment here..."

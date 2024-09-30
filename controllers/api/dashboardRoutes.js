@@ -2,10 +2,16 @@ const router = require("express").Router();
 const { Posts } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.post("/dashboard/create-post", withAuth, async (req, res) => {
+router.get('/create-post', withAuth, (req, res) => {
+  res.render('create-post', {
+    logged_in: req.session.logged_in,
+  });
+});
+
+router.post("/create-post", withAuth, async (req, res) => {
     try {
       if (req.session.user_id && req.body.title && req.body.body) {
-        const newPost = await Post.create({
+        const newPost = await Posts.create({
           title: req.body.title,
           body: req.body.body,
           user_id: req.session.user_id,
